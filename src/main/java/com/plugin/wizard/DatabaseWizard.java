@@ -17,7 +17,7 @@ public class DatabaseWizard extends AbstractWizard<Step> {
 
     public DatabaseWizard(Project p) {
         super("Nuevo constructor", p);
-        steps = List.of(new Step1(config), new Step2(config));
+        steps = List.of(new Step1(config), new Step2(config, p));
 
         for (Step step : steps) {
             addStep(step);

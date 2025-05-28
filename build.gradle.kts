@@ -26,7 +26,9 @@ dependencies {
     }
 
     implementation ("mysql:mysql-connector-java:8.0.33")
-    implementation("org.postgresql:postgresql:42.7.3")
+    implementation ("org.postgresql:postgresql:42.7.3")
+
+    implementation ("org.freemarker:freemarker:2.3.32")
 }
 
 intellijPlatform {

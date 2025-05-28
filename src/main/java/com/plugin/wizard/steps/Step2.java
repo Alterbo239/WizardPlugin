@@ -2,29 +2,38 @@ package com.plugin.wizard.steps;
 
 import com.intellij.ide.wizard.AbstractWizardStepEx;
 import com.intellij.ide.wizard.CommitStepException;
+import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBList;
 import com.intellij.util.ui.ColumnInfo;
 import com.plugin.database.DatabaseConfig;
+import com.plugin.generator.CodeGenerator;
+import freemarker.template.TemplateException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Step2 extends AbstractWizardStepEx {
-    private JPanel panel;
-    private JList<String> tablesList;
-    private DatabaseConfig config;
+    private final JPanel panel;
+    private final JList<String> tablesList;
+    private final DatabaseConfig config;
+    private final Project p;
+    private final Map<String, Object> map = new HashMap<>();
 
-    public Step2(DatabaseConfig config) {
+    public Step2(DatabaseConfig config, Project p) {
         super("Paso 2");
 
         this.config = config;
+        this.p = p;
 
         panel = new JPanel(new BorderLayout());
         panel.add(new JBLabel("Selecciona una tabla: "), BorderLayout.NORTH);
@@ -53,8 +62,13 @@ public class Step2 extends AbstractWizardStepEx {
         }
 
         try (Connection con = Step1.getConnection(config)) {
-            // Ahora vamos a ello.
+            CodeGenerator cg = new CodeGenerator();
+            cg.createDTOClass(selectedTable, con, p, map);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (TemplateException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
