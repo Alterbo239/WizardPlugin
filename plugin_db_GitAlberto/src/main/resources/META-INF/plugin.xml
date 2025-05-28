@@ -1,0 +1,44 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.example.plugin_db</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Plugin_db</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor url="https://www.midominio.com">MiCompañía</vendor>
+
+    <description><![CDATA[
+Este plugin ofrece funcionalidades avanzadas para gestión de proyectos.<br>
+<strong>Compatible con múltiples versiones de IntelliJ IDEA</strong>
+]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <registryKey key="kotlin.mpp.tests.force.gradle"
+                     defaultValue="true"
+                     description="Force Gradle for MPP tests"/>
+    </extensions>
+
+    <actions>
+
+            <action class="test.DatabaseAction"
+                    id="DataBaSeAction"
+                    text="Database"
+                    description="Opción para modificar la base de datos">
+            <add-to-group group-id="ToolsMenu" anchor="before" relative-to-action="HelpMenu"/>
+            </action>
+
+       <!-- <action id="test" class="test.Test" text="TEST">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>-->
+    </actions>
+</idea-plugin>

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "nombre": "Lentes Sol",
+    "descripcion": "Lentes de sol polarizados.",
+    "precioProveedor": "49.99",
+    "precioCliente": "60.49",
+    "stock": "10",
+    "idProveedor": "1",
+    "idOptica": "1"
+  },
+  {
+    "id": "2",
+    "nombre": "Gafas Lectura",
+    "descripcion": "Gafas para lectura de cerca.",
+    "precioProveedor": "29.90",
+    "precioCliente": "36.18",
+    "stock": "15",
+    "idProveedor": "2",
+    "idOptica": "1"
+  },
+  {
+    "id": "3",
+    "nombre": "Estuche",
+    "descripcion": "Estuche rígido para gafas.",
+    "precioProveedor": "9.99",
+    "precioCliente": "12.09",
+    "stock": "25",
+    "idProveedor": "1",
+    "idOptica": "2"
+  },
+  {
+    "id": "4",
+    "nombre": "Limpia Cristales",
+    "descripcion": "Spray para limpiar gafas.",
+    "precioProveedor": "4.50",
+    "precioCliente": "5.45",
+    "stock": "50",
+    "idProveedor": "2",
+    "idOptica": "2"
+  },
+  {
+    "id": "5",
+    "nombre": "Gafas Premium",
+    "descripcion": "Montura metálica con cristales.",
+    "precioProveedor": "120.00",
+    "precioCliente": "145.20",
+    "stock": "5",
+    "idProveedor": "1",
+    "idOptica": "1"
+  }
+]
