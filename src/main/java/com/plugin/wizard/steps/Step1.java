@@ -77,7 +77,7 @@ public class Step1 extends AbstractWizardStepEx {
     @Override
     public void commit(CommitType commitType) throws CommitStepException {
         config.setType((String) dbTypeCombo.getSelectedItem());
-        config.setHost(dbHostField.getText());
+        /*config.setHost(dbHostField.getText());
         try {
             config.setPort(Integer.parseInt(dbPortField.getText().trim()));
         } catch (NumberFormatException e) {
@@ -85,7 +85,13 @@ public class Step1 extends AbstractWizardStepEx {
         }
         config.setDbName(dbNameField.getText());
         config.setUser(dbUserField.getText());
-        config.setPassword(new String(dbPasswordField.getPassword()));
+        config.setPassword(new String(dbPasswordField.getPassword()));*/
+
+        config.setHost("localhost");
+        config.setPort(3306);
+        config.setDbName("plugin");
+        config.setUser("root");
+        config.setPassword("");
 
         Connection con = null;
 

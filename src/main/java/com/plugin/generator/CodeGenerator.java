@@ -11,6 +11,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.sql.Connection;
@@ -19,13 +20,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.List;
 
 
 public class CodeGenerator {
 
     private Configuration configuration;
 
-    public void Generator() throws IOException {
+    public CodeGenerator() throws IOException {
         configuration= new Configuration(Configuration.VERSION_2_3_28);
         try{
             // Usar el ClassLoader para cargar los recursos
@@ -71,14 +73,16 @@ public class CodeGenerator {
                 VirtualFile baseDir = ProjectUtil.guessProjectDir(project);
                 if (baseDir != null) {
                     // Buscar o crear el directorio src si no existe
-                    VirtualFile srcDir = baseDir.findChild("src");
-                    if (srcDir == null) {
-                        srcDir = baseDir.createChildData(this, "src");
+                    VirtualFile srcDir = baseDir.findFileByRelativePath("src/main/java/com/plugin");
+                    if (srcDir == null || !srcDir.isDirectory()) {
+                        Messages.showErrorDialog((Component) project, "Esa ruta no existe.");
                     }
+
                     VirtualFile dtoDir = srcDir.findChild("dto");
                     if (dtoDir == null) {
                         dtoDir = srcDir.createChildDirectory(this, "dto");
                     }
+
                     String fileName = mayuscula(selectedTable) + "DTO.java";
                     VirtualFile file = dtoDir.createChildData(this, fileName);
 
@@ -166,10 +170,10 @@ public class CodeGenerator {
                 return "long";
             case "BOOLEAN":
                 return "boolean";
-            /*case "TIMESTAMP", "DATETIME" , "DATE" , "TIME":
-                return Date.class;
+            case "TIMESTAMP", "DATETIME" , "DATE" , "TIME":
+                return "Date";
             case "ENUM":
-                return Enum.class;*/
+                return "Enum";
             default:
                 return "Object";
         }
